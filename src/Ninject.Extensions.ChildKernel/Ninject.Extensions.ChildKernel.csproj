@@ -81,8 +81,10 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ChangeImmutableComponentException.cs" />
     <Compile Include="ChildActivationCache.cs" />
     <Compile Include="ChildKernel.cs" />
+    <Compile Include="ChildKernelComponentContainer.cs" />
     <Compile Include="ChildKernelConstructorScorer.cs" />
     <Compile Include="IChildKernel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
