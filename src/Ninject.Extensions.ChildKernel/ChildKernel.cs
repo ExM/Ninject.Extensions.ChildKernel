@@ -31,6 +31,7 @@ namespace Ninject.Extensions.ChildKernel
     using Ninject.Injection;
     using Ninject.Modules;
     using Ninject.Planning;
+    using Ninject.Planning.Bindings;
     using Ninject.Planning.Bindings.Resolvers;
     using Ninject.Planning.Strategies;
     using Ninject.Selection;
@@ -218,6 +219,7 @@ namespace Ninject.Extensions.ChildKernel
             container.Add<IActivationStrategy, StartableStrategy>();
             container.Add<IActivationStrategy, BindingActionStrategy>();
             container.Add<IActivationStrategy, DisposableStrategy>();
+            container.Add<IBindingPrecedenceComparer, BindingPrecedenceComparer>();
             container.Add<IBindingResolver, StandardBindingResolver>();
             container.Add<IBindingResolver, OpenGenericBindingResolver>();
             container.Add<IMissingBindingResolver, DefaultValueBindingResolver>();
