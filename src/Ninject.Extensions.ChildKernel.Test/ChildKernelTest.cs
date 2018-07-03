@@ -215,7 +215,18 @@ namespace Ninject.Extensions.ChildKernel
             bar.Name.Should().Be("parent");
         }
 
-        [Fact]
+		[Fact]
+		public void DemoFeature()
+		{
+			this.parentKernel.Components.Add<IMissingBindingResolver, BarMissingBindingResolver>();
+
+			var barFromChild = this.testee.Get<IBar>();
+			var barFromParent = this.parentKernel.Get<IBar>();
+
+			barFromChild.Should().NotBeSameAs(barFromParent);
+		}
+
+		[Fact]
         public void SelectCorrectConstructorWhenBindingsAcrossKernels()
         {
             this.parentKernel.Bind<IBar>().To<Bar>().WithConstructorArgument("name", ParentBarName);
@@ -281,7 +292,7 @@ namespace Ninject.Extensions.ChildKernel
                 {
                     var binding = new Binding(request.Service);
                     var builder = new BindingBuilder<IBar>(binding, this.kernel, string.Empty);
-                    builder.To<Bar>().WithConstructorArgument("name", "parent");
+                    builder.To<Bar>().InSingletonScope().WithConstructorArgument("name", "parent");
                     return new[] { binding };
                 }
 
